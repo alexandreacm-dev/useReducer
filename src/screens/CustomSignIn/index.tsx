@@ -66,22 +66,22 @@ export default function CustomSignIn() {
 
   const onSignIn = async () => {
     if (email == "" && password == "") {
-      dispatch({ type: "error", error: "Email and Password is required" });
+      dispatch({ type: ERROR, error: "Email and Password is required" });
       return;
     }
 
-    dispatch({ type: "login" });
+    dispatch({ type: LOGIN });
 
     try {
       await SighIn(email.toLowerCase(), password.toLowerCase());
-      dispatch({ type: "success" });
+      dispatch({ type: SUCCESS });
     } catch (err: any) {
-      dispatch({ type: "error", error: err });
+      dispatch({ type: ERROR, error: err });
     }
   };
 
   const onLogout = () => {
-    dispatch({ type: "logout" });
+    dispatch({ type: LOGOUT });
   };
 
   return (

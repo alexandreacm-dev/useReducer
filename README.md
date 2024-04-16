@@ -47,16 +47,10 @@ yarn
 cd ios && pod install
 ```
 
-**Run IOS**
+**Run Android / IOS**
 
 ```
-npx expo start or yarn ios
-```
-
-**Run Android**
-
-```
-npx expo start or yarn ios
+npx expo start
 ```
 
 ## Running the tests
