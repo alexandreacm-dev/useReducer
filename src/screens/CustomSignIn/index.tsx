@@ -1,10 +1,10 @@
 import React, { useReducer } from "react";
 import { SafeAreaView, View } from "react-native";
 import { Text, TextInput, Button, useTheme, Avatar } from "react-native-paper";
-
 import { SighIn } from "../../services/signing.service";
 import { styles } from "./styles";
 import { AppState, IReducerType } from "../../models";
+import { ERROR, FIELD, LOGIN, LOGOUT, SUCCESS } from "../../constants";
 
 const initialState: IReducerType = {
   email: "",
@@ -16,20 +16,20 @@ const initialState: IReducerType = {
 
 const SignInReducer = (state: AppState, action: any) => {
   switch (action.type) {
-    case "field": {
+    case FIELD: {
       return {
         ...state,
         [action.field]: action.value,
       };
     }
-    case "login": {
+    case LOGIN: {
       return {
         ...state,
         isLoading: true,
         error: "",
       };
     }
-    case "success": {
+    case SUCCESS: {
       return {
         ...state,
         isLoading: false,
@@ -37,8 +37,7 @@ const SignInReducer = (state: AppState, action: any) => {
         error: "",
       };
     }
-
-    case "error": {
+    case ERROR: {
       return {
         ...state,
         isLoading: false,
@@ -46,7 +45,7 @@ const SignInReducer = (state: AppState, action: any) => {
         error: action.error,
       };
     }
-    case "logout": {
+    case LOGOUT: {
       return {
         ...state,
         email: "",
@@ -75,7 +74,6 @@ export default function CustomSignIn() {
 
     try {
       await SighIn(email.toLowerCase(), password.toLowerCase());
-
       dispatch({ type: "success" });
     } catch (err: any) {
       dispatch({ type: "error", error: err });

@@ -34,7 +34,7 @@ export const defaultTheme = {
         medium: 500,
         bold: 700,
     },
-    font_sizes: {
+    fonts_size: {
         caption: '12px',
         button: '14px',
         body: '16px',
